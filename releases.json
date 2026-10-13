@@ -1,0 +1,30 @@
+{
+  "project": "rosin_press_firmware",
+  "releases": [
+    {
+      "version": "v0.0.1",
+      "date": "2026-10-13",
+      "notes": "Test release for the bench rig: Ethernet and Modbus TCP only. No heater, pump or sensor control yet. Not for use on the press.",
+      "files": {
+        "bootloader": {
+          "path": "firmware/v0.0.1/bootloader.bin",
+          "offset": 0,
+          "size": 20832,
+          "md5": "ba3397697c5ab7dceb86f4d5b89008d5"
+        },
+        "partition_table": {
+          "path": "firmware/v0.0.1/partition-table.bin",
+          "offset": 32768,
+          "size": 3072,
+          "md5": "024c08c8fe1d424cbd9cb2d6f251300a"
+        },
+        "app": {
+          "path": "firmware/v0.0.1/rosin_press_firmware.bin",
+          "offset": 65536,
+          "size": 466576,
+          "md5": "94764f64d55c818329ac2583927f1164"
+        }
+      }
+    }
+  ]
+}

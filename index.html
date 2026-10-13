@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rosin Press Firmware</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="flasher.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Rosin Press Firmware</h1>
+      <p class="lede">Installs or updates the firmware on the press controller board over USB.</p>
+    </header>
+
+    <section id="unsupported" class="card warn" hidden>
+      <h2>Open this page in Chrome or Edge</h2>
+      <p>This browser can't talk to USB devices. Use Google Chrome or Microsoft Edge
+        on a Windows or Mac computer.</p>
+    </section>
+
+    <section class="card">
+      <h2><span class="step">1</span>Before you start</h2>
+      <ol class="checklist">
+        <li>Switch the press off at the breaker and open the cabinet.</li>
+        <li>Connect a USB-C cable from this computer to the controller board's USB port (J8).</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2><span class="step">2</span>Connect to the board</h2>
+      <p>Click <b>Connect</b>, choose the port in the list that opens, then click <b>Connect</b> there too.</p>
+      <div class="row">
+        <button id="connect" class="primary">Connect</button>
+        <button id="disconnect" hidden>Disconnect</button>
+      </div>
+      <p id="connect-status" class="status" aria-live="polite"></p>
+      <dl id="board" class="facts" hidden>
+        <dt>Installed</dt><dd id="installed"></dd>
+        <dt>Available</dt><dd id="available"></dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2><span class="step">3</span>Install</h2>
+      <label class="field">Firmware version
+        <select id="release" disabled></select>
+      </label>
+      <p id="notes" class="notes"></p>
+      <p id="plan" class="plan" aria-live="polite"></p>
+      <label id="confirm-row" class="check" hidden>
+        <input type="checkbox" id="confirm">
+        <span id="confirm-text"></span>
+      </label>
+      <details id="advanced">
+        <summary>Advanced</summary>
+        <label class="check">
+          <input type="checkbox" id="full">
+          <span><b>Full install.</b> Rewrites everything and resets all settings: presets, IP address,
+            power limits and tuning go back to factory defaults. Only for repairs.</span>
+        </label>
+      </details>
+      <div class="row">
+        <button id="install" class="primary" disabled>Install</button>
+      </div>
+      <div id="progress" class="progress" hidden>
+        <div class="bar"><div id="bar-fill"></div></div>
+        <p id="progress-text" class="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="done" class="card ok" hidden>
+      <h2>Finished</h2>
+      <p>Unplug the USB cable, close the cabinet and switch the press back on.
+        The HMI's diagnostics screen should show version <b id="done-version"></b>.</p>
+    </section>
+
+    <details class="log">
+      <summary>Technical details</summary>
+      <pre id="log"></pre>
+    </details>
+  </main>
+</body>
+</html>
