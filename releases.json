@@ -3,14 +3,14 @@
   "releases": [
     {
       "version": "v0.0.1",
-      "date": "2026-10-13",
-      "notes": "Test release for the bench rig: Ethernet and Modbus TCP only. No heater, pump or sensor control yet. Not for use on the press.",
+      "date": "2026-10-20",
+      "notes": "First firmware release for the 4CRP Smart IO Board. Brings up Ethernet and the Modbus TCP link to the HMI (192.168.1.10) and holds all heaters and the pump off. Heater, pump and sensor control are not in this release yet, so the press can't run a pressing cycle with it.",
       "files": {
         "bootloader": {
           "path": "firmware/v0.0.1/bootloader.bin",
           "offset": 0,
           "size": 20832,
-          "md5": "ba3397697c5ab7dceb86f4d5b89008d5"
+          "md5": "26ddd1c6dfe4cc3ee3f1063016499571"
         },
         "partition_table": {
           "path": "firmware/v0.0.1/partition-table.bin",
@@ -22,7 +22,7 @@
           "path": "firmware/v0.0.1/rosin_press_firmware.bin",
           "offset": 65536,
           "size": 466576,
-          "md5": "94764f64d55c818329ac2583927f1164"
+          "md5": "4fb76d8a885e76205ce0280b938129ed"
         }
       }
     }
