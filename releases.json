@@ -2,6 +2,31 @@
   "project": "rosin_press_firmware",
   "releases": [
     {
+      "version": "v0.0.2",
+      "date": "2026-10-20",
+      "notes": "Adds temperature control for the three heaters (Chamber, Piston, Filter brace). Each heater switches on and off to hold its setpoint from the HMI (default 200 \u00b0F). Power is limited to 25 % by default: a heater is on for at most 2.5 s in every 10 s. The limit can be changed in HMI registers 4x0010\u20134x0012 and returns to 25 % whenever the board restarts. A heater only runs while it is switched on from the HMI and its temperature sensor reads correctly. It switches off if the sensor fails, if the HMI stops talking to the board for 3 seconds, or when Stop is pressed. Pump and pressure control are not in this release yet, so the press can't run a pressing cycle with it. This is the first release that switches the heaters on: stay with the press the first time you use it.",
+      "files": {
+        "bootloader": {
+          "path": "firmware/v0.0.2/bootloader.bin",
+          "offset": 0,
+          "size": 20832,
+          "md5": "5f698c70a659be9d33ad8c9cf569485b"
+        },
+        "partition_table": {
+          "path": "firmware/v0.0.2/partition-table.bin",
+          "offset": 32768,
+          "size": 3072,
+          "md5": "024c08c8fe1d424cbd9cb2d6f251300a"
+        },
+        "app": {
+          "path": "firmware/v0.0.2/rosin_press_firmware.bin",
+          "offset": 65536,
+          "size": 470592,
+          "md5": "04540fdab47ddcf25911e0faecb737f1"
+        }
+      }
+    },
+    {
       "version": "v0.0.1",
       "date": "2026-10-20",
       "notes": "First firmware release for the 4CRP Smart IO Board. Brings up Ethernet and the Modbus TCP link to the HMI (192.168.1.10) and holds all heaters and the pump off. Heater, pump and sensor control are not in this release yet, so the press can't run a pressing cycle with it.",
