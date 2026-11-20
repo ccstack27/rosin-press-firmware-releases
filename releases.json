@@ -2,6 +2,31 @@
   "project": "rosin_press_firmware",
   "releases": [
     {
+      "version": "v0.1.1",
+      "date": "2026-11-20",
+      "notes": "Fixes the pump current reading and makes a full joystick push drive the pump fully on.\n\nPump current: the board now measures the motor driver's zero point itself and subtracts it, so the HMI shows about 0 mA with the pump stopped instead of 500-2800 mA. Retract still runs for its maximum time (30 s) until the end-of-retract current is tuned.\n\nFull push: with the joystick pushed all the way, the pump now runs fully on with no switching. Test for the pressure jumping while the pump runs: compare the HMI pressure at a partial push and at a full push, press direction, no load. If the false pressure goes away at a full push, the motor switching is the cause.\n\nStill known: the pressure reads too high while the pump runs. Use the joystick only, not the automatic cycle, until that is solved.",
+      "files": {
+        "bootloader": {
+          "path": "firmware/v0.1.1/bootloader.bin",
+          "offset": 0,
+          "size": 20832,
+          "md5": "97aff77e52e4fcf7ec47672286fbae58"
+        },
+        "partition_table": {
+          "path": "firmware/v0.1.1/partition-table.bin",
+          "offset": 32768,
+          "size": 3072,
+          "md5": "024c08c8fe1d424cbd9cb2d6f251300a"
+        },
+        "app": {
+          "path": "firmware/v0.1.1/rosin_press_firmware.bin",
+          "offset": 65536,
+          "size": 536560,
+          "md5": "11d34db96eda3b63f5dd72ed319572e7"
+        }
+      }
+    },
+    {
       "version": "v0.1.0",
       "date": "2026-11-19",
       "notes": "Full firmware for the 4CRP Smart IO Board: heaters, pressure sensor, hydraulic pump, joystick and the automatic pressing cycle (Auto Start with pressure gain, hold top-up, run time, Retract), plus presets and settings that survive a power cycle.\n\nFirst release with pump control, not yet tested on the press: stay with the press the first time. Check that the pressure reads about 0 psi at rest, that pushing the joystick forward closes the press (if it opens instead, set the pump direction invert setting), and run one short cycle at low pressure before normal use. Heaters are capped at 25 % by default. Retract runs for its maximum time (30 s) until the end-of-retract current is tuned.",
