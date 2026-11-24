@@ -2,6 +2,31 @@
   "project": "rosin_press_firmware",
   "releases": [
     {
+      "version": "v0.1.2",
+      "date": "2026-11-24",
+      "notes": "Filter the cycle's pressure and add the Auto Start refusal reason\n\nOn the press with v0.1.1, Auto Start only vibrated the pump: the PWM\nramp-up read as false pressure, so the cycle stopped and restarted the\npump every tick. The cycle now decides on a 90 ms median, with a 0.5 s\nminimum on and 0.3 s minimum off time and a hold band of at least 5 psi.\n3x0012 reports why the last Auto Start was refused (FD-50).",
+      "files": {
+        "bootloader": {
+          "path": "firmware/v0.1.2/bootloader.bin",
+          "offset": 0,
+          "size": 20832,
+          "md5": "cc8cc332164605c5e9402169f921420e"
+        },
+        "partition_table": {
+          "path": "firmware/v0.1.2/partition-table.bin",
+          "offset": 32768,
+          "size": 3072,
+          "md5": "024c08c8fe1d424cbd9cb2d6f251300a"
+        },
+        "app": {
+          "path": "firmware/v0.1.2/rosin_press_firmware.bin",
+          "offset": 65536,
+          "size": 536960,
+          "md5": "7b8dc001a68a01c90b9a44a3496688ca"
+        }
+      }
+    },
+    {
       "version": "v0.1.1",
       "date": "2026-11-20",
       "notes": "Fixes the pump current reading and makes a full joystick push drive the pump fully on.\n\nPump current: the board now measures the motor driver's zero point itself and subtracts it, so the HMI shows about 0 mA with the pump stopped instead of 500-2800 mA. Retract still runs for its maximum time (30 s) until the end-of-retract current is tuned.\n\nFull push: with the joystick pushed all the way, the pump now runs fully on with no switching. Test for the pressure jumping while the pump runs: compare the HMI pressure at a partial push and at a full push, press direction, no load. If the false pressure goes away at a full push, the motor switching is the cause.\n\nStill known: the pressure reads too high while the pump runs. Use the joystick only, not the automatic cycle, until that is solved.",
